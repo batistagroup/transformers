@@ -3686,7 +3686,7 @@ class GenerationMixin(ContinuousMixin):
                 next_token_scores = next_token_scores.expand_as(next_token_scores_processed)
 
                 if output_scores:
-                    processed_score[batch_group_indices] = next_token_scores_processed
+                    processed_score[batch_group_indices] = next_token_scores_processed.to(processed_score.dtype)
 
                 # reshape for beam search
                 next_token_scores = next_token_scores.view(batch_size, group_size * vocab_size)
